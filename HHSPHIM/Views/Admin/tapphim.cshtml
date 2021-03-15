@@ -1,0 +1,33 @@
+﻿@model IEnumerable<DatabaseProvide.cacTap>
+<div>
+<table>
+    <tr>
+        <th>Idp</th>
+        <th>Tap</th>
+        <th>link</th>
+        <th>Delete</th>
+        <th>Update</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td><input type="text" name="idpInTap" value="@item.IDP" readonly/></td>
+            <td><input type="text" name="tapInTap" value="@item.tap"/></td>
+            <td><input type="text" name="linkInTap" value="@item.Link" /></td>
+            <td>
+                <form>
+                    <button>Delete</button>
+                </form>
+            </td>
+            <td>
+                <form>
+                    <button>Update</button>
+                </form>
+            </td>
+        </tr>
+    }
+</table>
+<p style="color:red;font-size:16px;">
+    messeage
+</p>
+</div>

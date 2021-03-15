@@ -1,0 +1,49 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Change Pass</title>
+    <style>
+        body {
+            background-image: url('../../Assets/Admin/css/images/body-bg.gif');
+        }
+    </style>
+</head>
+<body>
+    <form action="/User/change" method="post">
+    <div>
+        <h1 style="text-align : center; color:antiquewhite;">
+            Change Pass
+        </h1>
+        <div style="background-color:darkgrey;height: 600px;width : 400px; margin :50px auto; border :3px solid green; border-radius: 3% 3% 3% 3%;">
+            <div style="margin-left:20px;margin-top:20px;">
+                @if (System.Web.HttpContext.Current.Session["login1"] != null)
+                {
+                    <label>Username  :</label><input style="margin-left:20px;height: auto;width : 200px;" value="@((Session["login1"] as DatabaseProvide.Account).Username)" name="a" /><br><br>
+                }
+                else
+                {
+                    <label>Username  :</label><input style="margin-left:20px;height: auto;width : 200px;" name="a" /><br><br>
+                }
+                <label>Old Pass     :</label><input style="margin-left:20px;height: auto;width : 200px;" name="b" type="password" /><br><br>
+                <label>New Pass     :</label><input style="margin-left:20px;height: auto;width : 200px;" name="c" type="password" /><br><br>
+                <label>RE-New Pass  :</label><input style="margin-left:20px;height: auto;width : 200px;" name="d" type="password" /><br><br>
+            </div>
+
+            <button type="submit" style="margin-left: 50px;">Change</button>
+            <a href="/Home/Index">Back To Home Page</a>
+
+        <p style="margin-left:30px; color:red;">
+            @System.Web.HttpContext.Current.Session["Err"]
+        </p>
+
+    </div>
+</form>
+</body>
+</html>

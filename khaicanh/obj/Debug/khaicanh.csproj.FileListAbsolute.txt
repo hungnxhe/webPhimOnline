@@ -1,0 +1,6 @@
+C:\Users\HaNoi\source\repos\webphim\khaicanh\bin\Debug\khaicanh.exe
+C:\Users\HaNoi\source\repos\webphim\khaicanh\bin\Debug\khaicanh.pdb
+C:\Users\HaNoi\source\repos\webphim\khaicanh\obj\Debug\khaicanh.csprojAssemblyReference.cache
+C:\Users\HaNoi\source\repos\webphim\khaicanh\obj\Debug\khaicanh.csproj.CoreCompileInputs.cache
+C:\Users\HaNoi\source\repos\webphim\khaicanh\obj\Debug\khaicanh.exe
+C:\Users\HaNoi\source\repos\webphim\khaicanh\obj\Debug\khaicanh.pdb

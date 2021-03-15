@@ -1,0 +1,80 @@
+﻿
+@{
+    Layout = null;
+}
+@model List<DatabaseProvide.Account>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Manager Account</title>
+    <style>
+        body {
+            background-image: url('../../Assets/Admin/css/images/body-bg.gif');
+        }
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1 style="text-align : center; color:antiquewhite;">
+            Block Account
+        </h1>
+        <div style="background-color:darkgrey;height: auto;width : 1000px; margin :50px auto; border :3px solid green; border-radius: 15px;">
+            <table style="margin-top:20px;">
+                <tr>
+                    <th>IDAC</th>
+                    <th>User name</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+                @foreach (var item in Model)
+                {
+            <tr>
+                <td>@item.IDAC</td>
+                <td>@item.Username</td>
+                <td>@item.status</td>
+                @if (item.IDAC.Equals("A01"))
+                {
+                    <td>ADMIN</td>
+                }
+                else if (@item.status.Equals("off"))
+                {
+                    <td>
+                        <form action="/Admin/UnLock" method="post">
+                            <button type="submit" style="background-color:green;"name="idac" value="@item.IDAC">Unlock</button>
+                        </form>
+                    </td>
+
+                }
+                else
+                {
+                    <td>
+                        <form action="/Admin/Lock" method="post">
+                            <button type="submit" style="background-color:red;"name="idac" value="@item.IDAC">Lock</button>
+                        </form>
+                    </td>
+                }
+            </tr>
+                }
+            </table>
+            <a href="/Home/Index" style="margin-left:15px;">Back to Home page</a>
+        </div>
+    </div>
+</body>
+</html>

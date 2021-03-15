@@ -1,0 +1,234 @@
+﻿
+@{
+    Layout = null;
+}
+@model  PagedList.IPagedList<DatabaseProvide.Phim>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="shortcut icon" type="image/ico" href="~/Assets/Admin/css/images/logo01.png" />
+    <title>SSh-Film</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="~/Assets/Admin/css/style.css" type="text/css" media="all" />
+    <script type="text/javascript" src="~/Assets/Admin/js/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Admin/js/jquery-func.js"></script>
+    <!--[if IE 6]><link rel="stylesheet" href="css/ie6.css" type="text/css" media="all" /><![endif]-->
+    <style>
+        .center {
+            margin-top:20px;
+            text-align: left;
+        }
+
+        .pagination {
+            display: inline-block;
+        }
+
+            .pagination a {
+                color: darkcyan;
+                float: left;
+                padding: 8px 16px;
+                text-decoration: none;
+                transition: background-color .3s;
+                border: 1px solid #ddd;
+                border-radius:6px;
+                margin: 0 4px;
+            }
+
+                .pagination a.active {
+                    background-color: red;
+                    color: white;
+                    border: 1px solid #4CAF50;
+                }
+
+                .pagination a:hover:not(.active) {
+                    background-color: burlywood;
+                }
+    </style>
+</head>
+<body>
+    @{ if (System.Web.HttpContext.Current.Session["login1"] != null)
+        {
+            if (System.Web.HttpContext.Current.Session["chucvu"].Equals("1") == true)
+            {
+                <div style="position: fixed;
+                 margin-top: 150px;
+                 margin-left: 30px;
+                 height: 270px;
+                 width: 200px;
+                 border: 3px solid red;
+                 border-radius: 15px;">
+                    <div style="background-color: dimgrey;border-radius: 10px 10px 0 0;">
+                        <div style="font-size:20px; text-align:center;color:darkorange;">
+                            Manager for Admin
+                        </div>
+                    </div>
+                    <div style="margin-top:10px ;margin-left:10px;">
+                        <a href="/Admin/AddPhim" style="font-size: 18px;">Add Phim</a><br /><br />
+                        <a href="/Admin/managerPhim" style="font-size: 18px;">Edit Or Remove Film</a><br /><br />
+                        <a href="/Admin/AddPhim" style="font-size: 18px;">Manager News(coming soon)</a><br /><br />
+                        <a href="/Admin/blockAccount" style="font-size: 18px;">Manager Account</a><br /><br />
+                        <a href="/Admin/managerComment" style="font-size: 18px;">Manager Comment</a><br /><br />
+                    </div>
+                </div>
+            }
+        }
+    }
+<div style="position: fixed;
+                 margin-top: 150px;
+                 margin-left: 1255px;
+                 height: 446px;
+                 width: 250px;
+                 border: 3px solid red;
+                 border-radius: 15px;">
+    <div style="background-color: dimgrey;border-radius: 10px 10px 0 0;">
+        <div style="font-size:17px; text-align:center;color:lightgreen;">
+            Top 7 Phim nhiều View nhất
+        </div>
+    </div>
+    <div style="margin-left:2px; margin-top:2px; display:flex; background-color:indigo; margin-right:2px;"><img src="https://drive.google.com/uc?id=1SpA4UPQe46x3MyLXzMAVax9Ophfyk9AV" style="height:50px; width:40px;" /><div><p style="font-size:17px;width:160px;margin-left:4px; text-align:center;">Spider man 1</p> <p style="text-align:center;color:red;">Lượt View : 12345</pst></p></div><a>Watch Movie</a></div>
+    <div style="margin-left:2px; margin-top:2px; display:flex; background-color:indigo; margin-right:2px;"><img src="https://drive.google.com/uc?id=1LPfPsl3_nvIKsuL55RbRYrc8eBcMcSVO" style="height:50px; width:40px;" /><div><p style="font-size:17px;width:160px;margin-left:4px; text-align:center;">Nguyen Xuan Hung</p> <p style="text-align:center;color:red;">Lượt View : 12345</pst></p></div><a>Watch Movie</a></div>
+    <div style="margin-left:2px; margin-top:2px; display:flex; background-color:indigo; margin-right:2px;"><img src="https://drive.google.com/uc?id=1SpA4UPQe46x3MyLXzMAVax9Ophfyk9AV" style="height:50px; width:40px;" /><div><p style="font-size:17px;width:160px;margin-left:4px; text-align:center;">Vu Hong Sơn</p> <p style="text-align:center;color:red;">Lượt View : 12345</pst></p></div><a>Watch Movie</a></div>
+    <div style="margin-left:2px; margin-top:2px; display:flex; background-color:indigo; margin-right:2px;"><img src="https://drive.google.com/uc?id=1LPfPsl3_nvIKsuL55RbRYrc8eBcMcSVO" style="height:50px; width:40px;" /><div><p style="font-size:17px;width:160px;margin-left:4px; text-align:center;">Dương Hai Long</p> <p style="text-align:center;color:red;">Lượt View : 12345</pst></p></div><a>Watch Movie</a></div>
+    <div style="margin-left:2px; margin-top:2px; display:flex; background-color:indigo; margin-right:2px;"><img src="https://drive.google.com/uc?id=1SpA4UPQe46x3MyLXzMAVax9Ophfyk9AV" style="height:50px; width:40px;" /><div><p style="font-size:17px;width:160px;margin-left:4px; text-align:center;">Nguyen Vu Tuan Linh</p> <p style="text-align:center;color:red;">Lượt View : 12345</pst></p></div><a>Watch Movie</a></div>
+    <div style="margin-left:2px; margin-top:2px; display:flex; background-color:indigo; margin-right:2px;"><img src="https://drive.google.com/uc?id=1LPfPsl3_nvIKsuL55RbRYrc8eBcMcSVO" style="height:50px; width:40px;" /><div><p style="font-size:17px;width:160px;margin-left:4px; text-align:center;">Vu Van Hai</p> <p style="text-align:center;color:red;">Lượt View : 12345</pst></p></div><a>Watch Movie</a></div>
+    <div style="margin-left:2px; margin-top:2px; display:flex; background-color:indigo; margin-right:2px;"><img src="https://drive.google.com/uc?id=1SpA4UPQe46x3MyLXzMAVax9Ophfyk9AV" style="height:50px; width:40px;" /><div><p style="font-size:17px;width:160px;margin-left:4px; text-align:center;">Hoang Minh Hieu</p> <p style="text-align:center;color:red;">Lượt View : 12345</pst></p></div><a>Watch Movie</a></div>
+    <div style="margin-left:2px; margin-top:2px; display:flex; background-color:indigo; margin-right:2px;"><img src="https://drive.google.com/uc?id=1LPfPsl3_nvIKsuL55RbRYrc8eBcMcSVO" style="height:50px; width:40px;" /><div><p style="font-size:17px;width:160px;margin-left:4px; text-align:center;">Nguyen Viet HUng</p> <p style="text-align:center;color:red;">Lượt View : 12345</pst></p></div><a>Watch Movie</a></div>
+</div>
+    <!-- START PAGE SOURCE -->
+    <div id="shell">
+        <div id="header">
+            <h1 id="logo"><a href="/Home/Index">SSH-film</a></h1>
+            <div class="social">
+                <span>FOLLOW US ON:</span>
+                <ul>
+                    <li><a class="twitter" href="#">twitter</a></li>
+                    <li><a class="facebook" href="#">facebook</a></li>
+                    <li><a class="vimeo" href="#">vimeo</a></li>
+                    <li><a class="rss" href="#">rss</a></li>
+                </ul>
+            </div>
+            <div id="navigation">
+                <form action="/Home/LogoutSystem" method="POST">
+                    <ul>
+                        @if (System.Web.HttpContext.Current.Session["login1"] != null)
+                        {
+                            <li><a href="/User/ChangePass" class="active">Hellu : @((Session["login1"] as DatabaseProvide.Account).Username)</a></li>
+                            <li><button>LOGOUT</button></li>
+                            <li><a href="/Favorite/Myfavorite">MY FAVORITE</a></li>
+                            <li><a href="/News/NewPage">COMING SOON</a></li>
+                            <li><a href="mailto:hung6nuh@gmail.com">CONTACT</a></li>
+
+                        }
+                        else
+                        {
+                            <li><a href="/Login/Login">LOGIN</a></li>
+                            <li><a href="/Register/Register">REGISTER</a></li>
+                            <li><a href="/News/NewPage">COMING SOON</a></li>
+                            <li><a href="mailto:hung6nuh@gmail.com">CONTACT</a></li>
+                        }
+                    </ul>
+                </form>
+            </div>
+            <div id="sub-navigation">
+                <ul>
+                    <li><a href="#">SHOW ALL</a></li>
+                    <li><a href="#">Top view</a></li>
+                    <li><a href="/TheLoai/TheLoai?txttheloai=Hanh Dong">Hành Động</a></li>
+                    <li><a href="/TheLoai/TheLoai?txttheloai=Vo Thuat">Võ Thuật</a></li>
+                    <li><a href="/TheLoai/TheLoai?txttheloai=He Huoc">Hề Hước</a></li>
+                    <li><a href="/TheLoai/TheLoai?txttheloai=Co Trang">Cổ Trang</a></li>
+                    <li><a href="/TheLoai/TheLoai?txttheloai=Kinh Di">Kinh Dị</a></li>
+                    <li><a href="/TheLoai/TheLoai?txttheloai=Tinh Cam">Tình Củm</a></li>
+                    <li><a href="/TheLoai/TheLoai?txttheloai=Phim Bo">Phim Bộ</a></li>
+                    <li><a href="/TheLoai/TheLoai?txttheloai=Phim tai lieu">Phim Tài Liệu</a></li>
+                    <li><a href="/TheLoai/TheLoai?txttheloai=Hoat Hinh">Hoạt Hình</a></li>
+                </ul>
+                <div id="search" style="margin-top:50px;">
+                    <form action="/Search/ResultSearch" accept-charset="utf-8">
+                        <label for="search-field">SEARCH</label>
+                        <input type="text" name="txt" value="Enter search here" id="search-field" class="blink search-field" />
+                        <input type="submit" value="GO!" class="search-button" />
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="main">
+            <div id="content">
+                <div class="box">
+                    <div class="head">
+                        <h2>18 movies</h2>
+                        <p class="text-right"><a href="#">...</a></p>
+                    </div>
+                    @{
+                        int count = 0;
+                        foreach (var item in Model)
+                        {
+                            count++;
+                            if (count % 6 == 0)
+                            {
+                                <div class="movie last">
+                                    <div class="movie-image"> <a href="/Detail/DetailPage?idone=@item.IDP"> <span class="play"><span class="name">@item.TenPhim</span></span><img src="@item.Poster" alt="" style="border-radius:15px;" /></a> </div>
+                                    <div>
+                                        <p style="text-align:center; font-size:14px;">@item.TenPhim</p>
+                                        <br /><br />
+                                    </div>
+                                </div> }
+                            else
+                            {
+                                <div class="movie">
+                                    <div class="movie-image"><a href="/Detail/DetailPage?idone=@item.IDP"> <span class="play"><span class="name">@item.TenPhim</span></span> <img src="@item.Poster" alt="" style="border-radius:15px;" /></a> </div>
+                                    <div>
+                                        <p style="text-align:center;font-size:14px;">@item.TenPhim</p>
+                                        <br /><br />
+                                    </div>
+                                </div>
+                            }
+
+                        }
+                    }
+                    <div class="cl">&nbsp;</div>
+                </div>
+            </div>
+            <div class="center">
+                <h2> Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</h2><br />
+                <div class="pagination">
+                    @{
+                        int index = ViewBag.Index;
+                        int before = index - 1;
+                        int after = index + 1;
+                        if (index == 1) { }
+                        else
+                        {
+                            <a href="/Home/Index?index=@before">&laquo;</a>
+                        }
+                        for (int i = 1; i <= ViewBag.total; i++)
+                        {
+                            if (i == index)
+                            {
+                                <a href="/Home/Index?index=@i" class="active">@i</a>
+                            }
+
+                            else
+                            {
+                                <a href="/Home/Index?index=@i" class="">@i</a>
+                            }
+                        }
+                        if (index == ViewBag.total) { }
+                        else
+                        {
+                            <a href="/Home/Index?index=@after">&raquo;</a>
+                        }
+                    }
+                </div>
+            </div>
+            <div class="cl">&nbsp;</div>
+        </div>
+        <div id="footer" style="margin-top:100px;">
+            <p class="lf">Copyright &copy; 2021 <a href="#">SiteName</a> - All Rights Reserved</p>
+            <p class="rf">Design by <a href="mailto:hung6nuh@gmail.com">Nguyen Xuan Hung</a></p>
+            <div style="clear:both;"></div>
+        </div>
+    </div>
+    <!-- END PAGE SOURCE -->
+</body>
+</html>

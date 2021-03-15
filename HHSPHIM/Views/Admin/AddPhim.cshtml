@@ -1,0 +1,94 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Add Phim </title>
+    <style>
+        body {
+            background-image: url('../../Assets/Admin/css/images/body-bg.gif');
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1 style="text-align : center; color:antiquewhite;">
+            Add Phim 
+        </h1>
+        <form action="/Admin/add" method="post">
+            @{
+                if (System.Web.HttpContext.Current.Session["login1"] != null)
+                {
+                    <div style="background-color:darkgrey;height: 600px;width : 400px; margin :50px auto; border :3px solid green; border-radius: 15px;text-align:center;">
+
+                        @if (System.Web.HttpContext.Current.Session["chucvu"].Equals("1") == true)
+                        {
+                            <div style="margin-left:20px;margin-top:20px;">
+                                <label>Id Phim  :</label><input name="a2" style="margin-left:20px;height: auto;width : 200px;"><br><br>
+                                <label>Ten Phim :</label><input name="b2" style="margin-left:20px;height: auto;width : 200px;" /><br><br>
+                                <label>The Loai :</label>
+                                <select name="c2">
+                                    <option value="Hanh Dong">Hành Động</option>
+                                    <option value="Vo Thuat">Võ Thuật</option>
+                                    <option value="He Huoc">Hề Hước</option>
+                                    <option value="Co Trang">Cổ Trang</option>
+                                    <option value="Kinh Di">Kinh Dị</option>
+                                    <option value="Tinh Cam">Tình Củm</option>
+                                    <option value="Phim Bo">Phim Bộ</option>
+                                    <option value="Phim Tai Lieu">Phim Tài Liệu</option>
+                                    <option value="Hoat Hinh">Hoạt Hình</option>
+                                </select><br><br>
+                                <label>Poster   :</label><input name="d2" style="margin-left:20px;height: auto;width : 200px;" /><br><br>
+                                <label>Dien vien:</label><input name="e2" style="margin-left:20px;height: auto;width : 200px;" /><br><br>
+                                <label>Anh Dien vien:</label><input name="k2" style="margin-left:20px;height: auto;width : 200px;" /><br><br>
+                                <label>Time post:</label><input name="f2" type="date" style="margin-left:20px;height: auto;width : 200px;" /><br><br>
+                                <label>Anh mota :</label><input name="g2" style="margin-left:20px;height: auto;width : 200px;" /><br><br>
+                                <label>Mota Phim:</label> <textarea name="h2">Mo ta Noi dung Phim</textarea><br><br>
+                                <label>Trailer  :</label><input name="i2" style="margin-left:20px;height: auto;width : 200px;" /><br><br>
+                            </div>
+                            <button type="submit" style="margin-left: 50px;">Submit</button>
+                            <a href="@((Session["previos"]))">Back To Previous page</a>
+                            <br>
+                            <a href="/Admin/AddLink" style="margin-left: 50px;">Add Tập</a>
+                            <div>
+                                <p style="color: red; margin-left:30px;">
+                                    * chú ý   Poster,Dienvien,AnhDienvien,Anhmota,trailer la link tu drive<br>
+                                    @{
+                                        String messeage = Request["messeage"];
+                                    }
+                                    @messeage
+                                </p>
+                            </div>
+                        }
+                        else
+                        {
+                            <div>
+                                <p style="color: red; margin-left:30px;">
+                                    * Your Account cannot manager Film
+                                </p>
+                                <a href="/Home/Index">Back To Home page</a>
+                            </div>
+                        }
+                    </div>
+                }
+
+                else
+                {
+                    <div>
+                        <p style="color: red; margin-left:30px;">
+                            * Access Denied !!
+                        </p>
+                    </div>
+                    <a href="/Home/Index">Back To Home page</a>
+                }
+            }
+
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,313 @@
+﻿
+@{
+    Layout = null;
+}
+@model List<DatabaseProvide.cacTap>
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="shortcut icon" type="image/ico" href="~/Assets/Admin/css/images/logo01.png" />
+    <title>SSh-Film</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="~/Assets/Admin/css/style.css" rel="stylesheet" type="text/css" />
+    <script src="~/Assets/Admin/js/jquery-1.4.2.min.js" type="text/javascript"></script>
+    <script src="~/Assets/Admin/js/jquery-func.js" type="text/javascript"></script>
+    <!--[if IE 6]><link rel="stylesheet" href="css/ie6.css" type="text/css" media="all" /><![endif]-->
+    <style>
+        .tip {
+            width: 0px;
+            height: 0px;
+            position: absolute;
+            background: transparent;
+            border: 10px solid #ccc;
+        }
+
+        .tip-left {
+            top: 10px;
+            left: -25px;
+            border-top-color: transparent;
+            border-left-color: transparent;
+            border-bottom-color: transparent;
+        }
+
+
+
+        .dialogbox .body {
+            position: relative;
+            max-width: 300px;
+            height: auto;
+            margin: 20px 10px;
+            padding: 5px;
+            background-color: #DADADA;
+            border-radius: 3px;
+            border: 5px solid #ccc;
+        }
+
+        .body .message {
+            min-height: 30px;
+            border-radius: 3px;
+            font-family: Arial;
+            font-size: 12px;
+            line-height: 1.5;
+            color: #797979;
+        }
+
+        div.ex3 {
+            background-image: url("images/body-bg.gif");
+            width: 350px;
+            height: 330px;
+            overflow: auto;
+        }
+
+        .comment {
+            margin-top: 10px;
+            margin-left: 10px;
+            width: 318px;
+            height: 40px;
+            padding: 10px;
+            background-color: #413e3e;
+        }
+
+        .paging {
+            display: flex;
+            margin-top: 3px;
+            text-align: left;
+        }
+
+            .paging a {
+                text-decoration: none;
+                border-radius: 5px;
+                padding: 2px;
+                border: 1px solid;
+            }
+    </style>
+</head>
+<body>
+    @{ if (System.Web.HttpContext.Current.Session["login1"] != null)
+        {
+            if (System.Web.HttpContext.Current.Session["chucvu"].Equals("1") == true)
+            {
+                <div style="position: fixed;
+                 margin-top: 150px;
+                 margin-left: 30px;
+                 height: 270px;
+                 width: 200px;
+                 border: 3px solid red;
+                 border-radius: 15px;">
+                    <div style="background-color: dimgrey;border-radius: 10px 10px 0 0;">
+                        <div style="font-size:20px; text-align:center;color:darkorange;">
+                            Manager for Admin
+                        </div>
+                    </div>
+                    <div style="margin-top:10px ;margin-left:10px;">
+                        <a href="/Admin/AddPhim" style="font-size: 18px;">Add Phim</a><br><br />
+                        <a href="/Admin/managerPhim" style="font-size: 18px;">Edit Or Remove Film</a><br><br />
+                        <a href="/Admin/AddPhim" style="font-size: 18px;">Manager News(coming soon)</a><br><br />
+                        <a href="/Admin/blockAccount" style="font-size: 18px;">Manager Account</a><br><br />
+                        <a href="/Admin/managerComment" style="font-size: 18px;">Manager Comment</a><br><br />
+                    </div>
+                </div>
+            }
+        }
+    }
+
+    <!-- START PAGE SOURCE -->
+    <div style="display: flex;">
+        <div id="shell">
+            <div id="header">
+                <h1 id="logo"><a href="/Home/Index">SSH-film</a></h1>
+                <div class="social">
+                    <span>FOLLOW US ON:</span>
+                    <ul>
+                        <li><a class="twitter" href="#">twitter</a></li>
+                        <li><a class="facebook" href="#">facebook</a></li>
+                        <li><a class="vimeo" href="#">vimeo</a></li>
+                        <li><a class="rss" href="#">rss</a></li>
+                    </ul>
+                </div>
+                <div id="navigation">
+                    <form action="/Home/LogoutSystem" method="POST">
+                        <ul>
+                            @if (System.Web.HttpContext.Current.Session["login1"] != null)
+                            {
+                                <li><a href="#">Hellu : @((Session["login1"] as DatabaseProvide.Account).Username)</a></li>
+                                <li><button>LOGOUT</button></li>
+                                <li><a href="/Favorite/Myfavorite">MY FAVORITE</a></li>
+                                <li><a href="/News/NewPage">COMING SOON</a></li>
+                                <li><a href="#">CONTACT</a></li>
+                            }
+                            else
+                            {
+                                <li><a href="/Login/Login">LOGIN</a></li>
+                                <li><a href="/Register/Register">REGISTER</a></li>
+                                <li><a href="/News/NewPage">COMING SOON</a></li>
+                                <li><a href="mailto:hung6nuh@gmail.com">CONTACT</a></li>
+                            }
+                        </ul>
+                    </form>
+                </div>
+                <div id="sub-navigation">
+                    <ul>
+                        <li><a href="#">SHOW ALL</a></li>
+                        <li><a href="#">Top view</a></li>
+                        <li><a href="/TheLoai/TheLoai?txttheloai=Hanh Dong">Hành Động</a></li>
+                        <li><a href="/TheLoai/TheLoai?txttheloai=Vo Thuat">Võ Thuật</a></li>
+                        <li><a href="/TheLoai/TheLoai?txttheloai=He Huoc">Hề Hước</a></li>
+                        <li><a href="/TheLoai/TheLoai?txttheloai=Co Trang">Cổ Trang</a></li>
+                        <li><a href="/TheLoai/TheLoai?txttheloai=Kinh Di">Kinh Dị</a></li>
+                        <li><a href="/TheLoai/TheLoai?txttheloai=Tinh Cam">Tình Củm</a></li>
+                        <li><a href="/TheLoai/TheLoai?txttheloai=Phim Bo">Phim Bộ</a></li>
+                        <li><a href="/TheLoai/TheLoai?txttheloai=Phim tai lieu">Phim Tài Liệu</a></li>
+                        <li><a href="/TheLoai/TheLoai?txttheloai=Hoat Hinh">Hoạt Hình</a></li>
+                    </ul>
+                    <div id="search" style="margin-top:50px;">
+                        <form action="/Search/ResultSearch" accept-charset="utf-8">
+                            <label for="search-field">SEARCH</label>
+                            <input type="text" name="txt" value="Enter search here" id="search-field" class="blink search-field" />
+                            <input type="submit" value="GO!" class="search-button" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div id="main">
+                <div id="content">
+                    <div class="box" style="display: flex;">
+                        <div style="margin-top: 40px;">
+                            <div style="display: flex;">
+                                <h1 style="color: #F2A223;">
+                                    @((Session["phimten"] as DatabaseProvide.Phim).TenPhim)
+                                </h1>
+                                <p style="font-size:17px;margin-left:330px;">Đang Xem Tập : @((Session["tapso"] as DatabaseProvide.cacTap).tap)</p>
+                            </div>
+                            <video autoplay="autoplay" controls="controls" width="660" height="400" style="border-radius: 15px;">
+                                <source src="@((Session["tapso"] as DatabaseProvide.cacTap).Link)" type="video/mp4" />
+                            </video>
+                            <div class="paging">
+                                <div>
+                                    @foreach (var item in Model)
+                                    {
+                                        string id = item.IDP;
+                                        <a href="/Watch/WatchPage?tap=@item.tap&id=@id">Tap @item.tap</a>
+                                    }
+                                </div>
+                                <div style="margin-left: 350px;">
+                                    <img src="~/Assets/Admin/css/images/file.png" style="height: 20px;height: 30px;" />@((Session["phimten"] as DatabaseProvide.Phim).luotView)
+                                </div>
+                                <div style="margin-left: 10px;">
+                                    <img src="~/Assets/Admin/css/images/chat.png" style="height: 20px;height: 30px;" />@ViewBag.countComment
+                                </div>
+                                <div style="margin-left: 10px;">
+                                    <img src="~/Assets/Admin/css/images/heart.png" style="height: 20px;height: 30px;" />@ViewBag.count
+                                </div>
+
+                            </div>
+
+                            <div style="border: 16px solid #000;background-color: #413e3e; margin-top: 15px;border-radius: 15px;">
+                                <div style="margin-left: 15px;">
+                                    <h2 style="margin-top: 5px;margin-left: 15px;">Diễn Viên Chính</h2>
+                                    <img src="@((Session["phimten"] as DatabaseProvide.Phim).Anhdienvien)" alt="" style="margin-top: 8px;border-radius: 10% 10% 10% 10%; height: 200px;width:150px;" />
+                                    <p style="margin-top: 5px; margin-left: 20px; margin-bottom: 5px;">@((Session["phimten"] as DatabaseProvide.Phim).DienVien)</p>
+                                </div>
+                            </div>
+                            <div style="border: 16px solid #000;background-color: #413e3e; margin-top: 15px;border-radius: 15px;">
+                                <div style="margin-left: 15px;">
+                                    <h2 style="margin-top: 5px;">Tóm Tắt Nội Dung</h2>
+                                    <p style="margin-top: 8px;">@((Session["phimten"] as DatabaseProvide.Phim).MoTa)</p>
+                                </div>
+                                <div>
+                                    <img src="@((Session["phimten"] as DatabaseProvide.Phim).Image)" alt="" style="height: 350px;width:600px; margin-top: 7px;margin-left: 10px;" />
+
+                                </div>
+                            </div>
+                        </div>
+                        <div style="margin-top: 40px;margin-left: 10px;">
+                            <h1 style="color: #F2A223;">
+                                Commennt :))
+                            </h1>
+                            <div class="ex3">
+                                <div class="container">
+                                    @{
+                                        List<DatabaseProvide.Comment> list1 = HttpContext.Current.Session["Listcomment"] as List<DatabaseProvide.Comment>;
+                                        foreach (var item in list1)
+                                        {
+                                            <div class="dialogbox">
+                                                <div class="body">
+                                                    <span class="tip tip-left"></span>
+                                                    <div class="message">
+                                                        <span><a style="font-size:17px; font-weight: bold; color:red;">@item.IDAC</a> : @item.BinhLuan</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                        <div id="alo">
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                            @if (System.Web.HttpContext.Current.Session["login1"] != null)
+                            {
+                                using (Ajax.BeginForm("Ajax", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "alo", InsertionMode = InsertionMode.InsertAfter, LoadingElementId = "loading" }))
+                                {
+                                    <div>
+                                        <textarea class="comment" name="txtcomment">Type your comment here.</textarea>
+                                        <br>
+                                        <input type="submit" name="submit" value="Send" style="margin-left: 10px;margin-top: 10px;">
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <div>
+                                    <textarea class="comment" style="font-size: 20px; color: red;">Pleasse Login to comment.</textarea>
+                                    <br>
+                                </div>
+                            }
+                            <div>
+
+                            </div>
+                            <div style="margin-top: 20px;margin-left: 10px;">
+                                <img src="~/Assets/Admin/css/images/quang cao.jpg" alt="" style="width: 339px;height: 505px;" />
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="box">
+                        <div class="head">
+                            <h2>MOST COMMENTED</h2>
+                            <p class="text-right"><a href="#">See all</a></p>
+                        </div>
+                        @{
+                            List<DatabaseProvide.Phim> list = HttpContext.Current.Session["mostcommented"] as List<DatabaseProvide.Phim>;
+                            foreach (var item in list)
+                            {
+                                <div class="movie">
+                                    <div class="movie-image"> <a href="/Detail/DetailPage?idone=@item.IDP"> <span class="play"><span class="name">@item.TenPhim</span></span><img src="@item.Poster" alt="" /></a> </div>
+                                    <div>
+                                        <p style="text-align:center; font-size:14px;">@item.TenPhim</p>
+                                        <br><br>
+                                    </div>
+                                </div>
+                            }
+                        }
+
+                        <div class="cl">&nbsp;</div>
+                    </div>
+                </div>
+                <div class="cl">&nbsp;</div>
+            </div>
+            <div id="footer">
+                <p class="lf">Copyright &copy; 2010 <a href="#">SiteName</a> - All Rights Reserved</p>
+                <p class="rf">Design by <a href="mailto:hung6nuh@gmail.com/">Nguyen Xuan Hung</a></p>
+                <div style="clear:both;"></div>
+            </div>
+        </div>
+
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+    <!-- END PAGE SOURCE -->
+</body>
+</html>
+
+

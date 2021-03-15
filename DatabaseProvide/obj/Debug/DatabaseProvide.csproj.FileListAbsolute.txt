@@ -1,0 +1,12 @@
+C:\Users\HaNoi\source\repos\webphim\DatabaseProvide\bin\Debug\DatabaseProvide.dll.config
+C:\Users\HaNoi\source\repos\webphim\DatabaseProvide\bin\Debug\DatabaseProvide.dll
+C:\Users\HaNoi\source\repos\webphim\DatabaseProvide\bin\Debug\DatabaseProvide.pdb
+C:\Users\HaNoi\source\repos\webphim\DatabaseProvide\bin\Debug\EntityFramework.dll
+C:\Users\HaNoi\source\repos\webphim\DatabaseProvide\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\HaNoi\source\repos\webphim\DatabaseProvide\bin\Debug\EntityFramework.xml
+C:\Users\HaNoi\source\repos\webphim\DatabaseProvide\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\HaNoi\source\repos\webphim\DatabaseProvide\obj\Debug\DatabaseProvide.csproj.CoreCompileInputs.cache
+C:\Users\HaNoi\source\repos\webphim\DatabaseProvide\obj\Debug\DatabaseProvide.csproj.CopyComplete
+C:\Users\HaNoi\source\repos\webphim\DatabaseProvide\obj\Debug\DatabaseProvide.dll
+C:\Users\HaNoi\source\repos\webphim\DatabaseProvide\obj\Debug\DatabaseProvide.pdb
+C:\Users\HaNoi\source\repos\webphim\DatabaseProvide\obj\Debug\DatabaseProvide.csprojAssemblyReference.cache
