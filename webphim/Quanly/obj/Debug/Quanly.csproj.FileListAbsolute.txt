@@ -1,0 +1,17 @@
+C:\Users\HaNoi\source\repos\webphim\Quanly\bin\Debug\Quanly.exe
+C:\Users\HaNoi\source\repos\webphim\Quanly\bin\Debug\Quanly.pdb
+C:\Users\HaNoi\source\repos\webphim\Quanly\obj\Debug\Quanly.csprojAssemblyReference.cache
+C:\Users\HaNoi\source\repos\webphim\Quanly\obj\Debug\Quanly.AddPhim.resources
+C:\Users\HaNoi\source\repos\webphim\Quanly\obj\Debug\Quanly.AddTap.resources
+C:\Users\HaNoi\source\repos\webphim\Quanly\obj\Debug\Quanly.DangNhap.resources
+C:\Users\HaNoi\source\repos\webphim\Quanly\obj\Debug\Quanly.Properties.Resources.resources
+C:\Users\HaNoi\source\repos\webphim\Quanly\obj\Debug\Quanly.QuanLyComment.resources
+C:\Users\HaNoi\source\repos\webphim\Quanly\obj\Debug\Quanly.QuanLyMenu.resources
+C:\Users\HaNoi\source\repos\webphim\Quanly\obj\Debug\Quanly.QuanLyNew.resources
+C:\Users\HaNoi\source\repos\webphim\Quanly\obj\Debug\Quanly.QuanLyPhim.resources
+C:\Users\HaNoi\source\repos\webphim\Quanly\obj\Debug\Quanly.csproj.GenerateResource.cache
+C:\Users\HaNoi\source\repos\webphim\Quanly\obj\Debug\Quanly.csproj.CoreCompileInputs.cache
+C:\Users\HaNoi\source\repos\webphim\Quanly\obj\Debug\Quanly.exe
+C:\Users\HaNoi\source\repos\webphim\Quanly\obj\Debug\Quanly.pdb
+C:\Users\HaNoi\source\repos\webphim\Quanly\obj\Debug\Quanly.BlockAccount.resources
+C:\Users\HaNoi\source\repos\webphim\Quanly\bin\Debug\Quanly.exe.config

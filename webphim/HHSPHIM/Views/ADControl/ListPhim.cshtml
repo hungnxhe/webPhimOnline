@@ -1,0 +1,36 @@
+﻿@model IEnumerable<DatabaseProvide.Phim>
+
+<div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info" style="display: flex;">
+
+    <table class="table my-0" id="dataTable">
+        <thead>
+            <tr>
+                <th>IDP</th>
+                <th>Poster</th>
+                <th>Tên Phim</th>
+                <th>Thể Loại</th>
+                <th>Lấy Thông Tin</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.IDP</td>
+                        <td><img class="rounded-circle mr-2" width="30" height="30" src="@item.Poster"></td>
+                        <td>@item.TenPhim</td>
+                        <td>@item.TheLoai</td>
+                        <td>
+                            @using (Ajax.BeginForm("GetPhim", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "data", InsertionMode = InsertionMode.Replace }))
+                            {
+                                <Button style="background-color: red;" name="idp" value="@item.IDP">Show</Button>
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+</div>

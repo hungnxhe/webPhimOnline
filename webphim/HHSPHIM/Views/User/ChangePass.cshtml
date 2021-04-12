@@ -1,0 +1,67 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Change Pass</title>
+    <style>
+        body {
+            background-image: url('../../Assets/Admin/css/images/body-bg.gif');
+        }
+    </style>
+</head>
+<body>
+    <form action="/User/change" method="post">
+    <div>
+        <h1 style="text-align : center; color:antiquewhite;">
+            Change Pass
+        </h1>
+        <div style="background-color:darkgrey;height: auto;width : 400px; margin :50px auto; border :3px solid green; border-radius: 3% 3% 3% 3%;">
+            <div style="margin-left:20px;margin-top:20px;">
+                <table>
+                    @if (System.Web.HttpContext.Current.Session["login1"] != null)
+                    {
+                        <tr>
+                            <th>Username  :</th>
+                            <td><input style="margin-left:20px;height: auto;width : 200px;" value="@((Session["login1"] as DatabaseProvide.Account).Username)" name="a" /></td>
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr>
+                            <th>Username  :</th>
+                            <td><input style="margin-left:20px;height: auto;width : 200px;" name="a" /></td>
+                        </tr>
+
+                    }
+                    <tr>
+                        <th>Old Pass     :</th>
+                        <td><input style="margin-left:20px;height: auto;width : 200px;" name="b" type="password" /></td>
+                    </tr>
+                    <tr>
+                        <th>New Pass     :</th>
+                        <td><input style="margin-left:20px;height: auto;width : 200px;" name="c" type="password" /></td>
+                    </tr>
+                    <tr>
+                        <th>RE-New Pass  :</th>
+                        <td><input style="margin-left:20px;height: auto;width : 200px;" name="d" type="password" /></td>
+                    </tr>
+                </table>
+            </div>
+
+            <button type="submit" style="margin-left: 50px;">Change</button>
+            <a href="/Home/Index">Back To Home Page</a>
+
+        <p style="margin-left:30px; color:red;">
+            @System.Web.HttpContext.Current.Session["Err"]
+        </p>
+
+    </div>
+</form>
+</body>
+</html>

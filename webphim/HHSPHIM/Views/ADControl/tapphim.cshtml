@@ -1,0 +1,37 @@
+﻿@model IEnumerable<DatabaseProvide.cacTap>
+<div>
+    <table class="table my-0" id="dataTable" style="width:600px;">
+
+        <tr>
+            <th>ID</th>
+            <th>Tập</th>
+            <th>Đường Dẫn</th>
+            <th>Xóa</th>
+            <th>Sửa</th>
+        </tr>
+
+        @{
+            foreach (var item in Model)
+            {
+
+                <tr>
+                    <td>@item.IDP</td>
+                    <td>@item.tap</td>
+                    <td><input type="text" value="@item.Link"></td>
+                    <th>
+                        @using (Ajax.BeginForm("deleteTap", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "ltap", InsertionMode = InsertionMode.Replace }))
+                        {
+                            <button style="background-color: red;" name="value" value="@item.tap @item.IDP" type="submit">Xóa</button>
+                        }    
+                    </th>
+                   
+                    <th><button style="background-color: green;">Save</button></th>
+                </tr>
+
+            }
+        }
+    </table>
+    <p style="color:red;font-size:16px;">
+        @System.Web.HttpContext.Current.Session["loi"]
+    </p>
+</div>
