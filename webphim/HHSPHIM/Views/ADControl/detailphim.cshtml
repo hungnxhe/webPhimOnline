@@ -1,0 +1,86 @@
+﻿@model DatabaseProvide.Phim
+<div>
+    @{
+        String[] arr = @Model.Poster.Split('=');
+        String oldLink = "https://drive.google.com/file/d/" + arr[1] + "/view?usp=sharing";
+        String[] arr1 = @Model.Anhdienvien.Split('=');
+        String oldLink1 = "https://drive.google.com/file/d/" + arr1[1] + "/view?usp=sharing";
+        string date = Model.timePost.ToString("yyyy-MM-dd");
+        String[] arr2 = @Model.Image.Split('=');
+        String oldLink2 = "https://drive.google.com/file/d/" + arr2[1] + "/view?usp=sharing";
+        String[] arr3 = @Model.Trailer.Split('/');
+        String oldLink3 = "https://youtu.be/" + arr3[4];
+    }
+    @using (Ajax.BeginForm("updateDetail", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "detailphim", InsertionMode = InsertionMode.Replace }))
+    {
+        <table class="table my-0" id="dataTable" style="width: 600px;">
+            <thead>
+                <tr>
+                    <th>ID Phim</th>
+                    <td><input name="a2" readonly value="@Model.IDP" style="margin-left:20px; height: auto;width : 450px;"></td>
+                </tr>
+                <tr>
+                    <th>Tên Phim</th>
+                    <td><input name="b2" value="@Model.TenPhim" style="margin-left:20px;height: auto;width : 450px;" /></td>
+                </tr>
+                <tr>
+                    <th>Thể Loại</th>
+                    <td>
+                        <select name="c2" style="margin-left:20px;">
+                            <option value="hanh fong">Hành Động</option>
+                            <option value="vo thuat">Võ Thuật</option>
+                            <option value="hai huoc">Hề Hước</option>
+                            <option value="co trang">Cổ Trang</option>
+                            <option value="kinh di">Kinh Dị</option>
+                            <option value="tinh cam">Tình Củm</option>
+                            <option value="phim bo">Phim Bộ</option>
+                            <option value="phim tai lieu">Phim Tài Liệu</option>
+                            <option value="hoat hinh">Hoạt Hình</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Poster</th>
+                    <td><input value="@oldLink" name="d2" style="margin-left:20px;height: auto;width : 450px;" /></td>
+                </tr>
+                <tr>
+                    <th>Diễn Viên</th>
+                    <td><input value="@Model.DienVien" name="e2" style="margin-left:20px;height: auto;width : 450px;" /></td>
+                </tr>
+                <tr>
+                    <th>Ảnh Diễn Viên</th>
+                    <td><input value="@oldLink1" name="k2" style="margin-left:20px;height: auto;width : 450px;" /></td>
+                </tr>
+                <tr>
+                    <th>Time Post</th>
+                    <td><input value="@date" name="f2" type="date" style="margin-left:20px;height: auto;width : 450px;" /></td>
+                </tr>
+                <tr>
+                    <th>Ảnh Mô tả</th>
+                    <td><input value="@oldLink2" name="g2" style="margin-left:20px;height: auto;width : 450px;" /></td>
+                </tr>
+                <tr>
+                    <th>Mô tả</th>
+                    <td><textarea style="height:200px;width:450px; margin-left:20px;" name="h2">@Model.MoTa</textarea></td>
+                </tr>
+                <tr>
+                    <th>Trailer</th>
+                    <td><input value="@oldLink3" name="i2" style="margin-left:20px;height: auto;width : 450px;" /></td>
+                </tr>
+            </thead>
+        </table>
+        <button type="submit" style="background-color:green;width: 115px; margin-top:20px; margin-left:110px;">Save</button>
+    }
+
+    @using (Ajax.BeginForm("tapphim", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "detailtap", InsertionMode = InsertionMode.Replace }))
+    {
+        <button type="submit" value="@Model.IDP" name="IDPForCm" style="background-color:blueviolet;margin-left:110px;margin-top:5px;">Sửa Tập phim</button>
+    }
+
+<p style="color:red; font-size:16px; margin:20px 30px;">
+    @System.Web.HttpContext.Current.Session["messs"]
+</p>
+
+    <hr style=" border-top: 5px solid black;" />
+    <div id="detailtap" style="width:200px;"></div>
+</div>

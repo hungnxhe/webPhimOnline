@@ -1,0 +1,67 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Register form</title>
+    <style>
+        body {
+            background-image: url('../../Assets/Admin/css/images/body-bg.gif');
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1 style="text-align : center; color:antiquewhite;">
+            Register
+        </h1>
+        <div style="display: flex; margin-left: 350px;">
+            <div>
+
+                <img src="~/Assets/images/register.jpg" alt="Alternate Text" style="height:600px; width:400px;" />
+            </div>
+            <div style="height:600px ;width:auto; background-color:black;">
+                <form action="/Register/Register" method="post">
+                    <div style="background-color:darkgrey;height: 500px;width : 400px; margin:50px 20px ; border :3px solid black; border-radius: 15px;">
+                        <div style="margin-left:20px;margin-top:20px;">
+                            <table>
+                                <tr  style="height:50px;">
+                                    <th>UserName:</th>
+                                    <td>
+                                        <input style="margin-left:20px;height: auto;width : 200px;" name="user" value="@ViewBag.user" type="email" />
+                                    </td>
+                                </tr>
+                                <tr  style="height:50px;">
+                                    <th>Password:</th>
+                                    <td>
+                                        <input type="password" style="margin-left:20px;height: auto;width : 200px;" name="pass" value="@ViewBag.pass" />
+                                    </td>
+                                </tr>
+                                <tr  style="height:50px;">
+                                    <th>RE Password:</th>
+                                    <td>
+                                        <input type="password" style="margin-left:20px;height: auto;width : 200px;" name="repass" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <button type="submit" style="margin-left: 90px; margin-top:30px;">Register</button>
+                        <a href="@((Session["previos"]))">Back To Previous page</a>
+                        <div>
+                            <p style="color: red; margin-left:30px; margin-top:30px;font-size:25px;">
+                                @ViewBag.mes1
+                            </p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>

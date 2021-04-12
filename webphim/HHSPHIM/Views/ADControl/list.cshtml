@@ -1,0 +1,36 @@
+﻿@model IEnumerable<DatabaseProvide.Comment>
+
+<table class="table my-0" id="dataTable" style="width: 600px;">
+    <thead>
+        <tr>
+            <th>ID P</th>
+            <th>Tên user</th>
+            <th>Bình Luận</th>
+            <th>Xóa</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.IDP</td>
+                <td>@item.name</td>
+                <td>@item.BinhLuan</td>
+                <td>
+                    @using (Ajax.BeginForm("removeComment", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "ajax2", InsertionMode = InsertionMode.Replace }))
+                    {
+                        <button type="submit" name="binhluan" value="@item.BinhLuan" style="background-color:red;">Xóa</button>
+                    }
+                </td>
+            </tr>
+        }
+        </tbody>
+    <tfoot>
+        <tr>
+            <th>IDAC</th>
+            <th>Tên user</th>
+            <th>Bình Luận</th>
+            <th>Xóa</th>
+        </tr>
+    </tfoot>
+</table>

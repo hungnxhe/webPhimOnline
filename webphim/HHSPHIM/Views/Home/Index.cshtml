@@ -1,0 +1,298 @@
+﻿
+@{
+    Layout = null;
+}
+@model  PagedList.IPagedList<DatabaseProvide.Phim>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="shortcut icon" type="image/ico" href="~/Assets/Admin/css/images/logo01.png" />
+    <title>SSh-Film</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="~/Assets/Admin/css/style.css" type="text/css" media="all" />
+    <script type="text/javascript" src="~/Assets/Admin/js/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Admin/js/jquery-func.js"></script>
+    <!--[if IE 6]><link rel="stylesheet" href="css/ie6.css" type="text/css" media="all" /><![endif]-->
+    <style>
+        .center {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .pagination {
+            display: inline-block;
+        }
+
+            .pagination a {
+                color: darkcyan;
+                float: left;
+                padding: 8px 16px;
+                text-decoration: none;
+                transition: background-color .3s;
+                border: 1px solid #ddd;
+                border-radius: 6px;
+                margin: 0 4px;
+            }
+
+                .pagination a.active {
+                    background-color: red;
+                    color: white;
+                    border: 1px solid #4CAF50;
+                }
+
+                .pagination a:hover:not(.active) {
+                    background-color: burlywood;
+                }
+    </style>
+    <style>
+
+        /* Slideshow container */
+        .slideshow-container {
+            margin: auto;
+            margin-top: 20px;
+            max-width: 1000px;
+            position: relative;
+        }
+
+        /* Caption text */
+        .text {
+            color:black;
+            font-size: 20px;
+            position: absolute;
+            bottom: 1px;
+            width: 100%;
+            text-align: left;
+        }
+
+        /* Number text (1/3 etc) */
+        .numbertext {
+            color: #f2f2f2;
+            font-size: 12px;
+            padding: 8px 12px;
+            position: absolute;
+            top: 0;
+        }
+
+        /* The dots/bullets/indicators */
+        .dot {
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        .active {
+            background-color: brown;
+        }
+
+        /* Fading animation */
+        .fade {
+            -webkit-animation-name: fade;
+            -webkit-animation-duration: 1.5s;
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+    </style>
+</head>
+<body>
+    <img src="~/Assets/images/quangcao.jpg" style="height:750px;margin-top:5px;width:230px;margin-left:20px; position: fixed;" />
+    <img src="~/Assets/images/quangcao.jpg" style="height:750px;margin-top:5px;width:230px;margin-left:1270px; position: fixed;" />
+    <!-- START PAGE SOURCE -->
+    <div id="shell">
+        <div id="header" style="background-color:darkgray;">
+            <h1 id="logo"><a href="/Home/Index">SSH-film</a></h1>
+            <div class="social">
+                <span style="color:black;">Theo dõi:</span>
+                <ul>
+                    <li><a class="twitter" href="#">twitter</a></li>
+                    <li><a class="facebook" href="#">facebook</a></li>
+                    <li><a class="vimeo" href="#">vimeo</a></li>
+                    <li><a class="rss" href="#">rss</a></li>
+                </ul>
+            </div>
+            <div id="navigation">
+                <form action="/Home/LogoutSystem" method="POST">
+                    <ul>
+                        @if (System.Web.HttpContext.Current.Session["login1"] != null)
+                        {
+                            <li><a style="color:red;" href="/User/ChangePass">Xin Chào : @((Session["login1"] as DatabaseProvide.Account).Username)</a></li>
+                            <li><button>Đăng Xuất</button></li>
+                            <li><a href="/Favorite/Myfavorite">Yêu Thích</a></li>
+                            <li><a href="/News/NewPage">Tin Tức</a></li>
+                            <li><a href="mailto:hung6nuh@gmail.com">CONTACT</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="/Login/Login">Đăng Nhập</a></li>
+                            <li><a href="/Register/Register">Đăng Ký</a></li>
+                            <li><a href="/Active/activeAccount">Kích hoạt Tài khoản</a></li>
+                            <li><a href="/News/NewPage">Tin Tức</a></li>
+                            <li><a href="mailto:hung6nuh@gmail.com">Liên Hệ</a></li>
+                        }
+                    </ul>
+                </form>
+            </div>
+            <div id="sub-navigation">
+                <ul>
+                    <li><a style="color:darkred;" href="/TheLoai/TheLoai?txttheloai=Hanh Dong">Hành Động</a></li>
+                    <li><a style="color:orangered;" href="/TheLoai/TheLoai?txttheloai=Vo Thuat">Võ Thuật</a></li>
+                    <li><a style="color:yellow;" href="/TheLoai/TheLoai?txttheloai=He Huoc">Hề Hước</a></li>
+                    <li><a style="color:green;" href="/TheLoai/TheLoai?txttheloai=Co Trang">Cổ Trang</a></li>
+                    <li><a style="color:blue;" href="/TheLoai/TheLoai?txttheloai=Kinh Di">Kinh Dị</a></li>
+                    <li><a style="color:darkviolet;" href="/TheLoai/TheLoai?txttheloai=Tinh Cam">Tình Cảm</a></li>
+                    <li><a style="color:darkred;" href="/TheLoai/TheLoai?txttheloai=Phim Bo">Phim Bộ</a></li>
+                    <li><a style="color:orangered;"href="/TheLoai/TheLoai?txttheloai=Phim tai lieu">Phim Tài Liệu</a></li>
+                    <li><a style="color:yellow;" href="/TheLoai/TheLoai?txttheloai=Hoat Hinh">Hoạt Hình</a></li>
+                    <li><a style="color:green;"href="/TheLoai/TheLoai?txttheloai=Hoat Hinh">Anime</a></li>
+                    <li><a style="color:blue;"href="/TheLoai/TheLoai?txttheloai=Hoat Hinh">TV show_THTT</a></li>
+                </ul>
+                <div id="search" style="margin-top:35px;">
+                    <form action="/Search/ResultSearch" accept-charset="utf-8">
+                        <label for="search-field" style="color:red;">Tìm Kiếm</label>
+                        <input type="text" name="txt" placeholder="Nhập tên Phim Muốn tìm" id="search-field" class="blink search-field" pattern="^(?=.*\S).+$" required=required />
+                        <input type="submit" value="GO!" class="search-button" />
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="slideshow-container">
+            @{
+                List<DatabaseProvide.Phim> topView = HttpContext.Current.Session["topView"] as List<DatabaseProvide.Phim>;
+                foreach (var item in topView)
+                {
+                        <div class="mySlides fade">
+                            <img src="@item.Image" style="width:100%; height:350px;" />
+                            <div class="text">
+                                <div style="background-image:url(../../Assets/images/bottom-fade.png)">
+                                    <br/><br/><br/>
+                                    <p style="font-weight:600">@item.TenPhim</p>
+                                    <p style="font-size:15px; font-weight:600;">
+                                        Diễn Viên Chính :@item.DienVien<br />
+                                        Điểm IMDb: @item.Rate<br />
+                                        Lượt View: @item.luotView<br />
+                                    </p>
+                                    <a style="margin-left:440px; font-weight:600; color: black;" href="/Detail/DetailPage?idone=@item.IDP">Xem Ngay</a>
+                                </div>
+                            </div>
+                        </div>
+                }
+            }
+        </div>
+        <br />
+        <div style="text-align:center">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+        <script>
+            var slideIndex = 0;
+            showSlides();
+            function showSlides() {
+                var i;
+                var slides = document.getElementsByClassName("mySlides");
+                var dots = document.getElementsByClassName("dot");
+                for (i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                slideIndex++;
+                if (slideIndex > slides.length) { slideIndex = 1 }
+                for (i = 0; i < dots.length; i++) {
+                    dots[i].className = dots[i].className.replace(" active", "");
+                }
+                slides[slideIndex - 1].style.display = "block";
+                dots[slideIndex - 1].className += " active";
+                setTimeout(showSlides, 3500); // Change image every 2 seconds
+            }
+        </script>
+        <hr />
+        <div id="main">
+            <div id="content">
+                <div class="box">
+                    <div class="head">
+                        <h2>Phim Mới nhất</h2>
+                        <p class="text-right"><a href="#">.</a></p>
+                    </div>
+                    @{
+                        int count = 0;
+                        foreach (var item in Model)
+                        {
+                            count++;
+                            if (count % 6 == 0)
+                            {
+                                <div class="movie last">
+                                    <div class="movie-image"> <a href="/Detail/DetailPage?idone=@item.IDP"> <span class="play"><span class="name">@item.TenPhim</span></span><img src="@item.Poster" alt="" /></a> </div>
+                                    <div>
+                                        <p style="text-align:center; font-size:14px;background-color:darkgray; color:black;">@item.TenPhim</p>
+                                        <p style="text-align:center;background-color:blueviolet; color:black;">IMDb: @item.Rate  /  View: @item.luotView</p>
+                                        <br /><br />
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="movie">
+                                    <div class="movie-image"><a href="/Detail/DetailPage?idone=@item.IDP"> <span class="play"><span class="name">@item.TenPhim</span></span> <img src="@item.Poster" alt="" /></a> </div>
+                                    <div>
+                                        <p style="text-align:center;font-size:14px; background-color:darkgray; color:black;">@item.TenPhim</p>
+                                        <p style="text-align:center;background-color:blueviolet; color:black; ">IMDb: @item.Rate  /  View: @item.luotView</p>
+                                        <p style="text-align:center"></p>
+                                        <br /><br />
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }
+                    <div class="cl">&nbsp;</div>
+                </div>
+            </div>
+            <div class="center">
+                <h2> Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</h2><br />
+                <div class="pagination">
+                    @{
+                        int index = ViewBag.Index;
+                        int before = index - 1;
+                        int after = index + 1;
+                        if (index == 1) { }
+                        else
+                        {
+                            <a href="/Home/Index?index=@before">&laquo;</a>
+                        }
+                        for (int i = 1; i <= ViewBag.total; i++)
+                        {
+                            if (i == index)
+                            {
+                                <a href="/Home/Index?index=@i" class="active">@i</a>
+                            }
+
+                            else
+                            {
+                                <a href="/Home/Index?index=@i" class="">@i</a>
+                            }
+                        }
+                        if (index == ViewBag.total) { }
+                        else
+                        {
+                            <a href="/Home/Index?index=@after">&raquo;</a>
+                        }
+                    }
+                </div>
+            </div>
+            <div class="cl">&nbsp;</div>
+        </div>
+        <div id="footer" style="margin-top:60px;">
+            <p class="lf">Copyright &copy; 2021 <a href="#">SiteName</a> - All Rights Reserved</p>
+            <p class="rf">Design by <a href="mailto:hung6nuh@gmail.com">Nguyen Xuan Hung</a></p>
+            <div style="clear:both;"></div>
+        </div>
+    </div>
+    <!-- END PAGE SOURCE -->
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+﻿@model IEnumerable<DatabaseProvide.Comment>
+
+@foreach (var item in Model) {
+<div class="dialogbox">
+    <div class="body">
+        <span class="tip tip-left"></span>
+        <div class="message">
+            <span><a style="font-size:15px; font-weight: bold; color:red;" >@item.name</a> : @item.BinhLuan</span>
+        </div>
+    </div>
+</div>
+}
